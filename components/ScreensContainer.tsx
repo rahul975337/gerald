@@ -14,18 +14,18 @@ import { useCallback } from "react";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const useDrawerAnimation = () => {
-  const progress = useSharedValue(0);
+  const isOpen = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => {
     const translateX = interpolate(
-      progress.value,
+      isOpen.value,
       [0, 1],
       [0, SCREEN_WIDTH * 0.6]
     );
-    const translateY = interpolate(progress.value, [0, 0], [0, 60]);
-    const borderRadius = interpolate(progress.value, [0, 1], [0, 16]);
+    const translateY = interpolate(isOpen.value, [0, 0], [0, 60]);
+    const borderRadius = interpolate(isOpen.value, [0, 1], [0, 16]);
     const rotate = interpolate(
-      progress.value,
+      isOpen.value,
       [0, 1],
       [0, -10 * (Math.PI / 180)]
     ); // Tilt effect
@@ -37,13 +37,13 @@ const useDrawerAnimation = () => {
   });
 
   const toggleDrawer = useCallback(() => {
-    progress.value = withTiming(progress.value === 0 ? 1 : 0, {
+    isOpen.value = withTiming(isOpen.value === 0 ? 1 : 0, {
       duration: 300,
     });
-  }, [progress]);
+  }, [isOpen]);
 
   return {
-    progress,
+    progress: isOpen,
     animatedStyle,
     toggleDrawer,
   };
