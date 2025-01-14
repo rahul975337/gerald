@@ -60,4 +60,4 @@ This project uses the following technologies:
    - The drawer state is animated based on swipe direction using `react-native-reanimated`.
 
 
-
+## [Google Drive Link for the demo](https://drive.google.com/file/d/1-9lyp0ZpK4Ws59fne6Ggr2ol8-TiZWJ3/view?usp=sharing)
