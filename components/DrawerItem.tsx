@@ -1,5 +1,5 @@
-import { Colors } from "@/constants/Colors";
-import { usePathname, useRouter } from "expo-router";
+import { router, usePathname } from "expo-router";
+import { useMemo } from "react";
 import { Pressable, Text } from "react-native";
 
 const ROUTES = ["/", "/orders", "/cart", "/favourites", "/login"];
@@ -15,14 +15,12 @@ export const PATH_NAME_TO_LABEL: Record<Routes[number], string> = {
 
 export const DrawerItem = ({ route }: { route: string }) => {
   const pathName = usePathname();
-  const router = useRouter();
-
-  const isActive = pathName === route;
+  const isActive = useMemo(() => pathName === route, [pathName, route]);
 
   return (
     <Pressable
       className={`px-5 py-6 ${
-        isActive ? `bg-[${Colors.tint}] rounded-xl` : ""
+        isActive ? `bg-[#3F2636] rounded-xl` : "bg-transparent"
       }`}
       onPress={() => router.push(route)}
     >

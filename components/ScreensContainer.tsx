@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { PATH_NAME_TO_LABEL } from "./DrawerItem";
+import { useCallback } from "react";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -35,11 +36,11 @@ const useDrawerAnimation = () => {
     };
   });
 
-  const toggleDrawer = () => {
+  const toggleDrawer = useCallback(() => {
     progress.value = withTiming(progress.value === 0 ? 1 : 0, {
       duration: 300,
     });
-  };
+  }, [progress]);
 
   return {
     progress,
